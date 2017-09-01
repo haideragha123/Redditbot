@@ -1,5 +1,7 @@
 import numpy as np
 
+#Andrew Karpathy Vanilla RNN
+#https://gist.github.com/karpathy/d4dee566867f8291f086
 
 data = open('data.txt', 'r').read()
 chars = list(set(data))
