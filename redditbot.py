@@ -9,6 +9,7 @@ import requests
 import bs4
 import numpy as np
 
+
 def authenticate():
     
 
@@ -27,6 +28,15 @@ def run_explainbot(reddit):
     
 	print("Getting 250 comments...\n")
 	
+	file = open("comments.txt", "w")
+
+	for comment in reddit.subreddit('wallstreetbets').comments(limit = 550):
+		cm_body  = comment.body
+		file.write(cm_body)
+
+	file.close()
+
+def get_tickers(reddit):
 	stock = {}
 
 	for comment in reddit.subreddit('wallstreetbets').comments(limit = 550):
@@ -43,15 +53,10 @@ def run_explainbot(reddit):
 	for tick in stock:
 		print(tick)		
 	print('Waiting 60 seconds...\n')
-	#time.sleep(60)
-
-
-
-#todo : implement minimilastic RNN
 
 
 myreddit = authenticate()
 
-#run_explainbot(myreddit)
+run_explainbot(myreddit)
 
 

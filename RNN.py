@@ -3,7 +3,7 @@ import numpy as np
 #Andrew Karpathy Vanilla RNN
 #https://gist.github.com/karpathy/d4dee566867f8291f086
 
-data = open('data.txt', 'r').read()
+data = open('comments.txt', 'r').read()
 chars = list(set(data))
 
 data_size, vocab_size = len(data), len(chars)
@@ -81,7 +81,7 @@ mbh, mby = np.zeros_like(bh), np.zeros_like(by) # memory variables for Adagrad
 
 smooth_loss = -np.log(1.0/vocab_size)*seq_length # loss at iteration 0
 
-while True:
+while n <= 50000:
 	# prepare inputs (we're sweeping from left to right in steps seq_length long)
 	if p+seq_length+1 >= len(data) or n == 0: 
 		hprev = np.zeros((hidden_size,1)) # reset RNN memory
@@ -90,7 +90,7 @@ while True:
 	targets = [char_to_ix[ch] for ch in data[p+1:p+seq_length+1]]
 
 	# sample from the model now and then
-	if n % 100 == 0:
+	if n % 3000 == 0 or n == 50000:
 		sample_ix = sample(hprev, inputs[0], 200)
 		txt = ''.join(ix_to_char[ix] for ix in sample_ix)
 		print ('----\n %s \n----' % (txt, ))
