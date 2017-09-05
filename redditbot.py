@@ -8,7 +8,7 @@ import re
 import requests
 import bs4
 import numpy as np
-
+from RNN import RNN
 
 def authenticate():
     
@@ -36,7 +36,7 @@ def run_explainbot(reddit):
 
 	file.close()
 
-	
+
 
 def get_tickers(reddit):
 	stock = {}
@@ -61,4 +61,6 @@ myreddit = authenticate()
 
 run_explainbot(myreddit)
 
+MyRNN = RNN()
+MyRNN.run()
 
