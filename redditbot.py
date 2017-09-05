@@ -36,6 +36,8 @@ def run_explainbot(reddit):
 
 	file.close()
 
+	
+
 def get_tickers(reddit):
 	stock = {}
 
